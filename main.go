@@ -7,14 +7,18 @@ import (
 
 func longestCommonPrefix(strs []string) string {
 
+	if len(strs) <= 1 {
+		return ""
+	}
+
 	lastCommonPrefix := strs[0]
 
 	for i := 1; i < len(strs); i++ {
 		foundCommon := false
-		for j := len(lastCommonPrefix); j >= 0; j-- {
-			sub := lastCommonPrefix[:j]
+		for j := len(strs[i]); j >= 0; j-- {
+			sub := strs[i][:j]
 
-			if strings.Contains(strs[i], sub) {
+			if strings.Contains(lastCommonPrefix, sub) {
 				lastCommonPrefix = sub
 				foundCommon = true
 				break
