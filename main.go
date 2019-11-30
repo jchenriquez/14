@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	"math"
 )
 
 func longestCommonPrefix(strs []string) string {
@@ -15,10 +15,11 @@ func longestCommonPrefix(strs []string) string {
 
 	for i := 1; i < len(strs); i++ {
 		foundCommon := false
-		for j := len(strs[i]); j >= 0; j-- {
+		nLen := int(math.Min(float64(len(lastCommonPrefix)), float64(len(strs[i]))))
+		for j := nLen; j >= 0; j-- {
 			sub := strs[i][:j]
 
-			if strings.Contains(lastCommonPrefix, sub) {
+			if lastCommonPrefix[:len(sub)] == sub {
 				lastCommonPrefix = sub
 				foundCommon = true
 				break
@@ -34,5 +35,5 @@ func longestCommonPrefix(strs []string) string {
 }
 
 func main() {
- fmt.Printf("Found prefix %s\n", longestCommonPrefix([]string{"flower","flow","flight"}))
+ fmt.Printf("Found prefix %s\n", longestCommonPrefix([]string{"c","acc","ccc"}))
 }
