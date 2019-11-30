@@ -11,6 +11,14 @@ func longestCommonPrefix(strs []string) string {
 		return ""
 	}
 
+	if len(strs) == 0 {
+		return ""
+	}
+
+	if len(strs) == 1 {
+		return strs[0]
+	}
+
 	lastCommonPrefix := strs[0]
 
 	for i := 1; i < len(strs); i++ {
